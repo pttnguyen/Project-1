@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Droppable Test</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui-1.8.23.custom.css"/>
+    <script src="../../js/jquery-1.8.0.min.js"></script>
+    <script src="../../js/jquery-ui-1.8.23.custom.min.js"></script>
+    <script type="text/javascript" src="test.js"></script>
+</head>
+<body>
+  <meta charset="utf-8">
+  <style>
+    #gallery {border: solid 1px black; margin: 2px;}
+    #gallery {float: left; width: 65%; min-height: 12em;} * html #gallery {height: 12em;} /* IE6 */
+    .gallery.custom-state-active {background: #eee;}
+    .gallery li {float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center;}
+    .gallery li a {float: right;}
+    .gallery li a.ui-icon-zoomin {float: left;}
+    .gallery li img {width: 100%; cursor: move;}
+
+    #new-trail {border: solid 1px black; margin: 2px;}
+    #new-trail {float: left; width: 65%; min-height: 12em;} * html #new-trail {height: 12em;} /* IE6 */
+  </style>
+  <div class="ui-widget ui-helper-clearfix">
+    <ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
+	  <li class="ui-widget-content ui-corner-tr">
+	    <img src="mexico-city.jpg"  alt="Mexico City"//>
+	  </li>
+	  <li class="ui-widget-content ui-corner-tr">
+	    <img src="new-york-city-787441.jpg"  alt="New York City"//>
+	  </li>
+	  <li class="ui-widget-content ui-corner-tr">
+	    <img src="Ocean_City_Maryland.jpg"  alt="Ocean City"//>
+	  </li>
+	  <li class="ui-widget-content ui-corner-tr">
+	    <img src="San_Francisco_City.jpg"  alt="San Francisco"//>
+	  </li>
+    </ul>
+
+    <div class="demo ui-widget ui-helper-clearfix">
+      <ul id="new-trail" class="gallery ui-helper-reset ui-helper-clearfix">
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
