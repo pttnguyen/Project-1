@@ -30,7 +30,9 @@
     
     #page-wrap { width: 400px; margin: 50px auto; padding: 20px; background: white; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
     p { font: 15px/2 Georgia, Serif; margin: 0 0 30px 0; text-indent: 40px; }
-
+li {
+  display:inline;
+}
 
 </style>
         <script type="text/javascript">
@@ -45,22 +47,24 @@ $(document).ready(function(){
       $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",{ tags: t,  tagmode: "any", format: "json"}, function(data)
                 {
                    $.each(data.items, function(i,item){
- theHtml+= '<a href="'+item.link+'" target="_blank">';
-     theHtml+= '<img title="'+item.title+'" src="'+item.media.m+'" alt="'+item.title+'" />';
-     theHtml+= '</a>';
+
+
+    theHtml+= '<li><a href="'+item.media.m+'" target="_blank">';
+     theHtml+= '<img height="40" width="auto" title="'+item.title+'" src="'+item.media.m+'" alt="'+item.title+'" />';
+     theHtml+= '</a></li>';
                  });
 
-                  $("#poster").html(theHtml);
-                   $('#poster').cycle({
-                     fx: 'fade',
-                     speed: 'fast',
-                     timeout: 0,
-                     next: '#next',
-                     prev: '#prev'
-                  });
+
+                  $("ul#poster").append(theHtml);
+
                 });
+
+                  $('#poster li').draggable({ revert: true} );
+
                });
        return false;
+
+
          });
         
         </script>
@@ -74,8 +78,10 @@ $(document).ready(function(){
          <input type="text" placeholder="Enter a tag" id="term" />
          <button id="search">Find me photographs</button>
      </section>
-     <section id="poster">
-     </section>   
+     
+     <ul id="poster">
+     </ul>
+
     </div>
 
 </body>
