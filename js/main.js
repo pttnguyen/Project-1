@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-  $('#search').click(function() {
-
+  $('#search').submit(function() {
     var t = $('#term').val();
     var theHtml="";
 
@@ -17,6 +16,6 @@ $(document).ready(function() {
                 $("ul#poster").append(theHtml);
               });
     $('#poster li').draggable({ revert: true} );
+    return false;
   });
-  return false;
 });
