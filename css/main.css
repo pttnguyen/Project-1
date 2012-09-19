@@ -1,14 +1,19 @@
 img{
-    height: 100px;
     float: left;
     border: 0px;
-    padding: 8px;
 }
+
+li.thumb { width: 90px; height: 75px; overflow: hidden; }
+li.thumb img { width: 90px; overflow: hidden; cursor: move; }
+
+body { font-family: tahoma; width: 910px; margin: 10px auto 10px auto; }
 
 * {
     margin: 0;
     padding: 0;
 }
+
+button, input { color: black; background: white; border: 1px solid black; padding: 3px; }
 
 html {
     background: no-repeat center center fixed;
@@ -17,6 +22,8 @@ html {
     -o-background-size: cover;
     background-size: cover;
 }
+
+
 
 #page-wrap {
     width: 400px;
@@ -36,4 +43,12 @@ p {
 
 li {
     display:inline;
+}
+
+ul {
+margin: 20px;
+width: 900px;
+height: 150px;
+background: #EEE;
+padding: 20px;
 }
