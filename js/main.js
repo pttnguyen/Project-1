@@ -3,7 +3,6 @@ $(document).ready(function() {
   $('#search').click(function() {
 
     var t = $('#term').val();
-    alert(t);
     var theHtml="";
 
     $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
