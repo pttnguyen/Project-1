@@ -32,8 +32,9 @@ li {
 }
 
 #poster {
-    border: solid 1px black; margin: 2px;
-    float: left;
+    border: solid 1px black;
+    margin: 2px;
+    padding: 8px;
     width: 65%;
     min-height: 12em;
 }
@@ -63,8 +64,15 @@ li {
 }
 
 #new-trail {
-    border: solid 1px black; margin: 2px;
-    float: left;
+    border: solid 1px black;
+    margin: 2px;
+    padding: 8px;
     width: 65%;
     min-height: 12em;
+}
+
+.center {
+    margin-left:auto;
+    margin-right:auto;
+    width:90%;
 }
