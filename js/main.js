@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  
   $('#fetch').submit(function() {
 
     var t = $('#term').val();
@@ -7,7 +7,8 @@ $(document).ready(function() {
 	
     var theHtml="";
 	
-	$("ul#poster").empty();
+	$("#poster").empty();
+	$('#term').val() == "";
 	
     $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
               {tags: t, tagmode: "any", format: "json"},
@@ -18,15 +19,20 @@ $(document).ready(function() {
                     '" src="' + item.media.m + '" alt="' + item.title + '" />';
                   theHtml += '</a></li>';
                 });
-                $("ul#poster").append(theHtml);
-				$("ul#poster li").draggable({revert: true});
+                $("#poster").append(theHtml);
               });
   return false;
+  
 	});
-
-  $("#ul#poster, ul#new-trail").sortable({
-	connectWith: ".connectedSortable"
-  });
+	
+	
+	
+	$(function() {
+  $("#poster, #new-trail").sortable({
+	connectWith: ".connectedSortable",
+	revert: true
+	});
+		});
 	
   });
   

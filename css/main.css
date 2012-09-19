@@ -3,8 +3,8 @@ img{
     border: 0px;
 }
 
-li.thumb { width: 90px; height: 75px; overflow: hidden; }
-li.thumb img { width: 90px; overflow: hidden; cursor: move; }
+li.thumb { width: 90px; height: 75px; overflow: hidden; float: left; cursor: move; }
+li.thumb img { width: 130px; height: auto; overflow: hidden; cursor: move; }
 
 body { font-family: tahoma; width: 910px; margin: 10px auto 10px auto; }
 
