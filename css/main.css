@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 img{
     float: left;
     border: 0px;
@@ -52,3 +53,83 @@ height: 150px;
 background: #EEE;
 padding: 20px;
 }
+=======
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#page-wrap {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    -moz-box-shadow: 0 0 20px black;
+    -webkit-box-shadow: 0 0 20px black;
+    box-shadow: 0 0 20px black;
+}
+
+p {
+    font: 15px/2 Georgia, Serif;
+    margin: 0 0 30px 0;
+    text-indent: 40px;
+}
+
+li {
+    display:inline;
+}
+
+#poster {
+    border: solid 1px black;
+    margin: 2px;
+    padding: 8px;
+    width: 65%;
+    min-height: 12em;
+}
+
+.pic-list.custom-state-active {
+    background: #eee;
+}
+
+.pic-list li {
+    float: left;
+    width: 96px;
+    padding: 0.4em;
+    margin: 0 0.4em 0.4em 0;
+    text-align: center;
+}
+
+.pic-list li a {
+    float: right;
+}
+
+.pic-list li a.ui-icon-zoomin {
+    float: left;
+}
+
+.pic-list li img {
+    width: 100%; cursor: move;
+}
+
+#new-trail {
+    border: solid 1px black;
+    margin: 2px;
+    padding: 8px;
+    width: 65%;
+    min-height: 12em;
+}
+
+.center {
+    margin-left:auto;
+    margin-right:auto;
+    width:90%;
+}
+>>>>>>> ac7488d17c9e9892a15b8bd24348c42b162222b0

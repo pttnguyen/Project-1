@@ -7,23 +7,28 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.23.custom.css"/>
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
         <script src="js/main.js"></script>
     </head>
 
 <body>
     <div id ="page">
-      
         <h1>FRONT ROW</h1>
         <section id="fetch">
-         <input type="text" placeholder="Enter a tag" id="term" />
-         <button id="search">Find me photographs</button>
-     </section>
-     
-     <ul id="poster">
-     </ul>
-
+            <form id="search">
+                <input type="text" placeholder="Enter a tag" id="term" />
+                <button type="submit">Find me photographs</button>
+            </form>
+        </section>
+        <div class="center ui-widget ui-helper-clearfix">
+            <ul id="poster" class="pic-list ui-helper-reset ui-helper-clearfix">
+            </ul>
+        </div>
+        <div class="center ui-widget ui-helper-clearfix">
+            <ul id="new-trail" class="pic-list ui-helper-reset ui-helper-clearfix">
+            </ul>
+        </div>
     </div>
-
 </body>
 </html>
