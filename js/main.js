@@ -1,25 +1,31 @@
 $(document).ready(function() {
-  $("#poster, #new-trail").sortable({
-	connectWith: ".pic-list"
+
+  $("#poster, #new-trail ul").sortable({
+	connectWith: ".connectedSortable",
+    revert: true
   });
 
-  $('#search').submit(function() {
+  $('#fetch').submit(function() {
+
     var t = $('#term').val();
+
     var theHtml="";
-    $("ul#poster").html("");
+
+    $("#poster").empty();
+    $('#term').val() == "";
 
     $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
               {tags: t, tagmode: "any", format: "json"},
               function(data) {
                 $.each(data.items, function(i,item) {
-                  theHtml += '<li class="ui-widget-content ui-corner-tr"><a href="' + item.media.m + '" target="_blank">';
-                  theHtml += '<img title="' + item.title +
+                  theHtml += '<li class="thumb"><a href="' + item.media.m + '" target="_blank">';
+                  theHtml += '<img height="75px" width="auto" title="' + item.title +
                     '" src="' + item.media.m + '" alt="' + item.title + '" />';
                   theHtml += '</a></li>';
                 });
-                $("ul#poster").append(theHtml);
+                $("#poster").append(theHtml);
               });
-    $('#poster li').draggable({ revert: true} );
     return false;
   });
+
 });

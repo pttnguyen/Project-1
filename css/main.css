@@ -1,7 +1,19 @@
+img{
+    float: left;
+    border: 0px;
+}
+
+li.thumb { width: 90px; height: 75px; overflow: hidden; float: left; cursor: move; }
+li.thumb img { width: auto; height: 75px; overflow: hidden; cursor: move; }
+
+body { font-family: tahoma; width: 910px; margin: 10px auto 10px auto; }
+
 * {
     margin: 0;
     padding: 0;
 }
+
+button, input { color: black; background: white; border: 1px solid black; padding: 3px; }
 
 html {
     background: no-repeat center center fixed;
@@ -31,48 +43,10 @@ li {
     display:inline;
 }
 
-#poster {
-    border: solid 1px black;
-    margin: 2px;
-    padding: 8px;
-    width: 65%;
-    min-height: 12em;
-}
-
-.pic-list.custom-state-active {
-    background: #eee;
-}
-
-.pic-list li {
-    float: left;
-    width: 96px;
-    padding: 0.4em;
-    margin: 0 0.4em 0.4em 0;
-    text-align: center;
-}
-
-.pic-list li a {
-    float: right;
-}
-
-.pic-list li a.ui-icon-zoomin {
-    float: left;
-}
-
-.pic-list li img {
-    width: 100%; cursor: move;
-}
-
-#new-trail {
-    border: solid 1px black;
-    margin: 2px;
-    padding: 8px;
-    width: 65%;
-    min-height: 12em;
-}
-
-.center {
-    margin-left:auto;
-    margin-right:auto;
-    width:90%;
+ul {
+    margin: 20px;
+    width: 900px;
+    height: 150px;
+    background: #EEE;
+    padding: 20px;
 }
