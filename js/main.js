@@ -70,7 +70,7 @@ $(document).ready(function() {
       url: bookmark.find('a').attr('href'),
       description: bookmark.find('a').text(),
       extended: bookmark.data('extended'),
-      tags: bookmark.data('tags').join(' ') + ' ' + newTrailName + ' ' + 'step:' + delicious.stepNum,
+      tags: newTrailName + ',' + 'step:' + delicious.stepNum,
       method: 'posts/add',
       username: delicious.username,
       password: delicious.password
