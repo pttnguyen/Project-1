@@ -4,9 +4,9 @@
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>Delicious Trailmaker</title>
 
-    <script src="js/jquery-1.8.0.min.js"></script>
-    <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
-	<script src="js/jquery-ui-touch-punch.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  	<script src="js/jquery-ui-touch-punch.js"></script>
 
         <link rel="stylesheet" type="text/css" href="css/main2.css"/>
         <script src="js/main2.js"></script>
@@ -65,8 +65,10 @@
             	});
 
                 // Allow the user to rearrange the list of bookmarks in the new trail
-				$('#new-trail ul').sortable();
+				// $('#new-trail ul').sortable();
             });
+			
+			
             
             function saveTrail () {
                 // We need to keep track of which bookmark number we are saving, so we
@@ -129,31 +131,29 @@
     </head>
 
 <body>
+
     <div id ="page">
-      
         <h1>De.Flick.Us</h1>
-     
 	 <form id="fetch">
          <input autofocus="autofocus" type="text" placeholder="Enter a tag" id="term" />
          <button id="search">Load Photos</button>
      </form>
+	</div>
      
-     <ul id="poster" class="connectedSortable">
-     </ul>
-	 
+    <ul id="poster" class="connectedSortable">
+	</ul>
+
 	<div id='new-trail'>
 		<h2>New Trail</h2>
-		<ul class='connectedSortable'></ul>
-		
+	<ul class='connectedSortable'></ul>
 	</div>
+
 	
 	<form id='save-trail' action='' method='post'>
 		<input id='save-username' type='text' name='save-username'>
 		<input id='save-password' type='password' name='save-password'>
 		<input type='submit' name='mail-trail' value='Make New Trail' id='mail-trail'>
 		</form>
-
-    </div>
 
 
 <div id="page">

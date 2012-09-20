@@ -1,0 +1,46 @@
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script src="js/jquery-ui-touch-punch.js"></script>
+
+<style type='text/css'>
+#items{
+    width:100px;
+    height:100px;
+    overflow:auto;
+    background:#eee;
+}
+
+li { float: left; }
+
+</style>
+
+<script type="text/javascript">
+$(function() {
+    $('#sort, #sort2').sortable({
+        connectWith: '.sorted',
+        scroll : true,
+    });
+});
+</script>
+
+<div id="items">
+    <ul id="sort" class="sorted">
+        <li>Item A1</li>
+        <li>Item A2</li>
+        <li>Item A3</li>
+        <li>Item A4</li>
+        <li>Item A5</li>
+        <li>Item A6</li>
+        <li>Item A7</li>
+        <li>Item A8</li>
+        <li>Item A9</li>
+        <li>Item A10</li>
+    </ul>
+</div>
+<ul id="sort2" class="sorted">
+    <li>Item B1</li>
+    <li>Item B2</li>
+    <li>Item B3</li>
+    <li>Item B4</li>
+    <li>Item B5</li>
+</ul>

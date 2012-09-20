@@ -14,7 +14,7 @@ $(document).ready(function() {
               {tags: t, tagmode: "any", format: "json"},
               function(data) {
                 $.each(data.items, function(i,item) {
-                  theHtml += '<li class="thumb"><a href="' + item.media.m + '" target="_blank">';
+                  theHtml += '<li class="thumb"><div class="del" style="cursor: pointer;" onClick="$(this).parent().remove();">x</div><a href="' + item.media.m + '" target="_blank">';
                   theHtml += '<img height="75px" width="auto" title="' + item.title +
                     '" src="' + item.media.m + '" alt="' + item.title + '" />';
                   theHtml += '</a></li>';
@@ -25,13 +25,12 @@ $(document).ready(function() {
   
 	});
 	
-	
-	
-	$(function() {
-  $("#poster, #new-trail").sortable({
+$(function() {
+  $("#poster, #new-trail ul").sortable({
 	connectWith: ".connectedSortable",
+	scroll: true,
 	revert: true
-	});
-		});
-	
+			});
+				});
+			
   });
