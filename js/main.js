@@ -65,11 +65,15 @@ $(document).ready(function() {
     // Get the first bookmark to save, which is the first element of the #new-trail list
     var bookmark = $('#new-trail li:first');
 
+    // description is a required parameter, so be sure it is set to something
+    var description = bookmark.find('a').text();
+    if (typeof description === "undefined" || description === "")
+      description = "<no description>";
+
     // Assemble the data to send to Delicious
     var postData = {
       url: bookmark.find('a').attr('href'),
-      description: bookmark.find('a').text(),
-      extended: bookmark.data('extended'),
+      description: description,
       tags: newTrailName + ',' + 'step:' + delicious.stepNum,
       method: 'posts/add',
       username: delicious.username,
