@@ -9,14 +9,15 @@ $(document).ready(function() {
 	
 	$("#poster").empty();
 	$('#term').val() == "";
+	$('#term').blur()
 	
     $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
               {tags: t, tagmode: "any", format: "json"},
               function(data) {
                 $.each(data.items, function(i,item) {
-                  theHtml += '<li class="thumb"><div class="del" style="cursor: pointer;" onClick="$(this).parent().remove();">x</div><a href="' + item.media.m + '" target="_blank">';
+                  theHtml += '<li class="thumb"><div class="del" style="cursor: pointer;" onClick="$(this).parent().remove();">x</div><a href="' + item.media.m.replace("_m", "") + '" target="_blank">';
                   theHtml += '<img height="75px" width="auto" title="' + item.title +
-                    '" src="' + item.media.m + '" alt="' + item.title + '" />';
+                    '" src="' + item.media.m.replace("_m", "") + '" alt="' + item.title + '" />';
                   theHtml += '</a></li>';
                 });
                 $("#poster").append(theHtml);
@@ -32,5 +33,6 @@ $(function() {
 	revert: true
 			});
 				});
-			
+
+				
   });
