@@ -65,24 +65,16 @@
             	});
 
                 // Allow the user to rearrange the list of bookmarks in the new trail
-				// $('#new-trail ul').sortable();
-			
-			});
-				
-				
+				$('#new-trail ul').sortable();
+            });
+
 			function deleter () {
-				$('#tabs div#login').fadeOut(1000);
-			}            
-			
-			function shower () {
-				$('#tabs div#viewer').fadeIn(1000);
-			}			
-			
-			function creating () {
-				$('#tabs div#creator').fadeIn(1000);
+				$('#tabs div#login').fadeOut(2000);
 			}
 			
-
+			function shower () {
+				$('#tabs div#viewer').fadeIn(2000);
+			}
 			
             function saveTrail () {
                 // We need to keep track of which bookmark number we are saving, so we
@@ -121,12 +113,8 @@
                  function(rsp){
                     if (rsp.result_code === "access denied") {
                         alert('The provided Delicious username and password are incorrect.');
-						$('.deleteme').remove();
                     } else if (rsp.result_code === "something went wrong") {
-                        alert('Please choose some photos to add to your Delicious photo album.');
-						$('.deleteme').remove();
-						setTimeout(deleter, 200);
-						setTimeout(creating, 2000);
+                        alert('There was an unspecified error communicating with Delicious.');
                     } else if (rsp.result_code === "done") {
                         // Bookmark was saved properly
                         $('#new-trail li:first').remove(); // Remove the line for the bookmark we just saved
@@ -204,7 +192,7 @@
 		<a href="#login" onClick="" class='big_butt right'>Login to Delicious</a>
 		
 			<div id='new-trail' style='margin-top: 45px;'>
-				<h2 style='font-size: 18px;'>New Trail</h2>
+				<h3>New Trail</h3>
 			<ul class='connectedSortable steps'></ul>
 			</div>
 		
@@ -237,7 +225,7 @@
 
 	<div class='splash'>
 		<h2>Congratulations!</h2>	
-		<div class='sub_header'>You can view your <strong>De.<font color='blue'>licio</font>.us(ly)</strong> generated <strong><font color='#1057AE'>Flick</font><font color='#FF0084'>r</font></strong> Gallery Below.</div>
+		<h3>You can view your De.<font color='blue'>licio</font>.us(ly) generated <font color='#1057AE'>Flick</font><font color='#FF0084'>r</font> Gallery Below.</h3>	
 		
 		<br /><br /><br /><br /><br /><br /><br />
 		
