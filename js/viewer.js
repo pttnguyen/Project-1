@@ -1,7 +1,8 @@
 function getURLParameter(name) {
-  return decodeURI(
-    (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-  );
+  str = RegExp(name + '=' + '(.+?)(&|$)').exec(location.search);
+  if (str==null)
+    return null;
+  return decodeURI(str[1]);
 }
 
 function loadSlideShow(username, tag) {
