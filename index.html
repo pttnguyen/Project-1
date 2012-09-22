@@ -2,41 +2,258 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-        <title>Delicious Trailmaker</title>
+        <title>De.Flick.Us Trailmaker</title>
 
-        <script src="js/jquery-1.8.0.min.js"></script>
-        <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
-        <script src="js/jquery-ui-touch-punch.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  	<script src="js/jquery-ui-touch-punch.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="css/main.css"/>
-        <script src="js/main.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/main2.css"/>
+        <script src="js/main2.js"></script>
+        
+        	<script type="text/javascript">
+		    // Create an empty global object where we can store settings for connecting to Delicious
+		    var delicious = {};
+
+		    // When users click on a link, open it in a new window
+		    $('a').live('click', function() {
+		        window.open($(this).attr('href'));
+	            return false;
+		    });
+
+            $(document).ready(function() {
+
+                // Load bookmarks for the specified user when the #load-bookmarks form is submitted
+                $('#load-bookmarks').submit(function() {
+                    var username = $('#username').val();
+                    // This cross-domain request requires that you use '?callback=?' because it is done using JSONP
+                    $.getJSON('http://feeds.delicious.com/v2/json/' + username + '?callback=?',
+                     function(json){
+                        $(json).each(function(index) {
+                            // this.u // url
+                            // this.d // description
+                            // this.n // extended notes
+                            // this.t // array of tags
+                            $('<li></li>').html('<a href="' + this.u + '">' + this.d + '</a>')
+								.data('extended', this.n)
+								.data('tags', this.t)
+								.appendTo('#bookmarks ul');
+                        });
+					
+                    });
+                    return false;
+                });
+
+                $('#save-trail').submit(function() {
+                	// Let's ask the user for a name for the trail
+                	// We are storing the name that the user enters as the text of the
+                	// h2 in the #new-trail div
+                	// The || syntax here lets us specify a default value
+                    $('#new-trail h2').text(prompt('Enter a name for your trail:') || 'My New Trail');
+
+                    // Store the username and password to send with each request
+                    // This isn't the best security practice, but we do it here
+                    // in the interest of brevity
+                    delicious.username = $('#save-username').val();
+                    delicious.password = $('#save-password').val();
+                    delicious.stepNum = 0;
+					$('<div class="deleteme"></div>').html('<img src="progress_bar.gif" />')
+						.appendTo('#login');
+					
+                    saveTrail();
+                    return false;
+            	});
+
+                // Allow the user to rearrange the list of bookmarks in the new trail
+				// $('#new-trail ul').sortable();
+			
+			});
+				
+				
+			function deleter () {
+				$('#tabs div#login').fadeOut(1000);
+			}            
+			
+			function shower () {
+				$('#tabs div#viewer').fadeIn(1000);
+			}			
+			
+			function creating () {
+				$('#tabs div#creator').fadeIn(1000);
+			}
+			
+
+			
+            function saveTrail () {
+                // We need to keep track of which bookmark number we are saving, so we
+                // can use the `step:2` syntax that we have established
+                // When the user submitted the form we started with stepNum = 0,
+                // so we can increment it each time we call saveTrail
+                delicious.stepNum++;
+
+                // Change spaces in the trail name to underscores to follow our trail syntax
+                // By default, the .replace() method doesn't replace ALL the occurrances
+            	// of a string, so we are using the global flag in our regular expression
+            	// to replace everything. The global flag is set with the "g" after
+            	// the regular expression (/ /g)
+                var newTrailName = 'trail:' + $('#new-trail h2').text().toLowerCase().replace(/ /g, '_');
+
+                // Get the first bookmark to save, which is the first element of the #new-trail list
+                var bookmark = $('#new-trail li:first');
+
+                // Assemble the data to send to Delicious
+                var postData = {
+                    url: bookmark.find('a img').attr('src'),
+                    description: bookmark.find('a img').attr('title'),
+                    extended: bookmark.data('extended'),
+                    tags: newTrailName + ',' + 'step:' + delicious.stepNum,
+                    method: 'posts/add',
+                    username: delicious.username,
+                    password: delicious.password
+                };
+
+                // Send the data to Delicious through a proxy and handle the response
+                // Use $.post if the script is located on the same server
+                // Otherwise, use $.get to avoid cross-domain problems
+                // $.post('delicious_proxy.php',
+                $.getJSON("http://courses.ischool.berkeley.edu/i290-iol/f12/resources/trailmaker/delicious_proxy.php?callback=?",
+                postData,
+                 function(rsp){
+                    if (rsp.result_code === "access denied") {
+                        alert('The provided Delicious username and password are incorrect.');
+						$('.deleteme').remove();
+                    } else if (rsp.result_code === "something went wrong") {
+                        alert('Please choose some photos to add to your Delicious photo album.');
+						$('.deleteme').remove();
+						setTimeout(deleter, 200);
+						setTimeout(creating, 2000);
+                    } else if (rsp.result_code === "done") {
+                        // Bookmark was saved properly
+                        $('#new-trail li:first').remove(); // Remove the line for the bookmark we just saved
+                        if ($('#new-trail li').length > 0) {
+                            // Save the next bookmark in the trail in 1000ms (1 second)
+                            // We have to wait this period of time to comply with the
+                            // terms of the Delicious API. If we don't we may have access denied.
+                            setTimeout(saveTrail, 1000);
+                        } else {
+                            // We're done saving the trail
+                            window.delicious_password = null;
+							$('.deleteme').remove();
+							setTimeout(deleter, 200);
+							setTimeout(shower, 2000);
+
+                        }
+                    }
+                });
+            }
+            
+            $(document).ready(function(){
+				$('#tabs div.tab').hide();
+				$('#tabs div#welcome').fadeIn(500);
+				$('#tabs ul li:first').addClass('active');
+				 
+				$('.button, .big_butt').click(function(){
+				$('#tabs ul li').removeClass('');
+				$(this).parent().addClass('');
+
+				var currentTab = $(this).attr('href');
+				$('#tabs div.tab').hide();
+				$(currentTab).fadeIn(1000);
+				$("#save-username").focus();
+
+				return false;
+			});
+		});
+
+            
+		</script>
+
+        
     </head>
 
 <body>
-    <div id ="page">
 
-        <h1>De.Flick.Us</h1>
 
-        <form id="fetch">
-            <input autofocus="autofocus" type="text" placeholder="Enter a tag" id="term" />
-            <button id="search">Load Photos</button>
-        </form>
+<div id="tabs">
 
-        <ul id="poster" class="connectedSortable">
-        </ul>
+   <div id="welcome" class='tab'>
 
-        <div id='new-trail'>
-            <h2>New Trail</h2>
-            <ul class='connectedSortable'></ul>
+		<div class='splash'>
 
-        </div>
+    <h1>De.Flick.Us</h1>
+	<h2>A De.<font color='blue'>licio</font>.us <font color='#1057AE'>Flick</font><font color='#FF0084'>r</font> Gallery Application</h2>
 
-        <form id='save-trail' action='' method='post'>
-            <input id='save-username' type='text' name='save-username'>
-            <input id='save-password' type='password' name='save-password'>
-            <input type='submit' name='mail-trail' value='Make New Trail' id='mail-trail'>
-        </form>
+		<div style='clear: both; height: 40px;'></div>
+		<a href="#creator" class='big_butt'>Make Your Own!</a><a href="#viewer" class='big_butt'>Final Viewer</a>
 
-    </div>
+		</div>
+
+   </div>
+
+   <div id="creator" class='tab'>
+
+	<h3>De.Flick.Us</h3>
+			 <form id="fetch">
+		         <input autofocus="autofocus" type="text" placeholder="Enter a tag" onclick="this.value = '';" id="term" />
+		         <button id="search">Load Photos</button>
+		     </form>
+
+		    <ul id="poster" class="connectedSortable">
+			</ul>
+		
+		<a href="#login" onClick="" class='big_butt right'>Login to Delicious</a>
+		
+			<div id='new-trail' style='margin-top: 45px;'>
+				<h2 style='font-size: 18px;'>New Trail</h2>
+			<ul class='connectedSortable steps'></ul>
+				<input type='button' class='right' style='margin-top: -7px;' onClick='$("#new-trail ul li").fadeOut();' value='Clear Trail'>
+			</div>
+		
+
+   </div>
+
+
+
+   <div id="login" class='tab'>
+		
+		<div class='center'>
+		<center><img src='delicious_logo.png' style='float: none;' /></center>
+		<h1>Login to Del.icio.us</h1>
+		
+		<div style='clear: both; height: 10px;'></div>
+			<form id='save-trail' action='' method='post'>
+				<input id='save-username' placeholder='User Name' type='text' name='save-username'>
+				<input id='save-password' placeholder='Password' type='password' name='save-password'>
+				<input type='submit' name='mail-trail' value='Make New Trail' id='mail-trail'>
+			</form>
+		</div>
+
+
+   </div>
+
+
+
+
+   <div id="viewer" class='tab'>
+
+	<div class='splash'>
+		<h2>Congratulations!</h2>	
+		<div class='sub_header'>You can view your <strong>De.<font color='blue'>licio</font>.us(ly)</strong> generated <strong><font color='#1057AE'>Flick</font><font color='#FF0084'>r</font></strong> Gallery Below.</div>
+		
+		<br /><br /><br /><br /><br /><br /><br />
+		
+				<a href="#creator" onClick='$("#poster").empty();' class='big_butt'>Create New</a>
+		
+	</div>
+
+
+   </div>
+
+
+
+
+ </div>
+
+
 </body>
 </html>
