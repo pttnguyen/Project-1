@@ -19,18 +19,13 @@
 	<div id="tabs">
 	<div id="viewer" class="tabs">
 	<div id="page">
-		<h1>Get tagged photos</h1>
 		<form id="load-bookmarks" action="trail_maker_submit" method="get" accept-charset="utf-8">
-			<h2>Enter any Delicious username:</h2>
-			<input type="text" name="username" id="username" value="" />
-            <h2>Enter the photo tag:</h2>
-            <input type="text" name="phototag" id="phototag" value="" /> 
-
-			<input type="submit" value="Get Gallery" />
+            <input type="text" name="username" id="username" placeholder="username" value="" />
+            <input type="text" name="phototag" id="phototag" placeholder="trail name" value="" />
+            <input type="submit" value="Get Trail" />
 		</form>
 	</div>
 		<div id="holder">
-		<div id="header">Your Gallery</div>
 		<div class="coverFlow">
 			<ul id="trails"></ul>
 		</div>
