@@ -32,7 +32,7 @@
 				<h3>New Trail</h3>
 			<ul class='connectedSortable steps'></ul>
 				<input type='button' class='right' onClick='$("#new-trail ul li").fadeOut();' value='Clear Trail'/>
-		        <input type='button' href="#login" class='button right' value='Login to Delicious'/>
+		        <input type='button' id="login-button" class='button right' value='Save Trail'/>
 			</div>
 		
 
@@ -40,23 +40,21 @@
 
    <div id="login" class='tab'>
 		
-		<div class='center'>
 		<center><img src='delicious_logo.png' style='float: none;' /></center>
-		<h1>Login to Del.icio.us</h1>
-		
-		<div style='clear: both; height: 10px;'></div>
-			<form id='save-trail' action='' method='post'>
-				<input id='save-username' placeholder='User Name' type='text' name='save-username'>
-				<input id='save-password' placeholder='Password' type='password' name='save-password'>
-				<input type='submit' name='mail-trail' value='Make New Trail' id='mail-trail'>
-			</form>
-		</div>
-
+		<h3>Login to Del.icio.us to save the trail</h3>
+		<form id='save-trail' action='' method='post'>
+            <ul>
+			    <li><input id='save-trail-name' placeholder='trail name' type='text' name='save-trail-name'></li>
+			    <li><input id='save-username' placeholder='de.licio.ous username' type='text' name='save-username'></li>
+			    <li><input id='save-password' placeholder='password' type='password' name='save-password'></li>
+			    <li><input type='submit' name='mail-trail' value='Save Trail' id='mail-trail'>
+			        <input type='button' name='save-cancel' value='Cancel' id='save-cancel'></li>
+            </ul>
+		</form>
 
    </div>
 
  </div>
-
 
 </body>
 </html>

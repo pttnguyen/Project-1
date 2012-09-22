@@ -133,7 +133,7 @@ margin-bottom: 20px;
 .middle { text-align: center; }
 .right { float: right; margin-top: 0px; margin-right: 20px;}
 
-.center { height: 100%; margin-top: 80px; text-align: center; }
+.center { height: 100%; margin-top: 10px; float: none; text-align: center; }
 
 .splash h1 { font-size: 60px; }
 
@@ -174,4 +174,29 @@ right: auto;
 
 #new-trail {
     margin-top: 30px;
+}
+
+#login {
+    width: 350px;
+
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border: 1px solid #EEE;
+
+    background-color: #aaaaaa;
+    text-align: middle;
+
+    /* ARG!  The goal here is to center the login div in the middle of the page.  I
+       can't get "margin 0px auto;" to work.  There must be a "right" way to do this.
+     */
+    position: absolute;
+    top: 100px;
+    padding: 0px;
+    margin-left: 200px;
+}
+
+#login li {
+    display: block;
+    padding-bottom: 3px;
 }

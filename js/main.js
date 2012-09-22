@@ -43,17 +43,28 @@ var delicious = {};
 $(document).ready(function() {
 
   $('#save-trail').submit(function() {
-    // Let's ask the user for a name for the trail
-    // We are storing the name that the user enters as the text of the
-    // h2 in the #new-trail div
-    // The || syntax here lets us specify a default value
-    $('#new-trail h2').text(prompt('Enter a name for your trail:') || 'My New Trail');
 
     // Store the username and password to send with each request
     // This isn't the best security practice, but we do it here
     // in the interest of brevity
     delicious.username = $('#save-username').val();
     delicious.password = $('#save-password').val();
+    delicious.trail_name = $('#save-trail-name').val();
+    if (delicious.trail_name == "") {
+      alert("trail name is required!");
+      return false;
+    }
+    if (delicious.username == "") {
+      alert("Username is required!");
+      return false;
+    }
+    if (delicious.password == "") {
+      alert("Password is required!");
+      return false;
+    }
+    $('#new-trail h2').text(delicious.trail_name || 'My New Trail');
+
+
     delicious.stepNum = 0;
     $('<div class="deleteme"></div>').html('<img src="progress_bar.gif" />')
       .appendTo('#login');
@@ -117,7 +128,7 @@ function saveTrail () {
                 alert('The provided Delicious username and password are incorrect.');
                 $('.deleteme').remove();
               } else if (rsp.result_code === "something went wrong") {
-                alert('Please choose some photos to add to your Delicious photo album.');
+                alert("Couldn't save the trail!");
                 $('.deleteme').remove();
                 setTimeout(deleter, 200);
                 setTimeout(creating, 2000);
@@ -146,15 +157,25 @@ $(document).ready(function(){
   $('#tabs div#creator').fadeIn(500);
   $('#tabs ul li:first').addClass('active');
 
-  $('.button, .big_butt').click(function(){
+  $('#login-button').click(function(){
+
+    if ($('#new-trail li').length == 0) {
+      alert("You must create a trail before saving!");
+      return false;
+    }
+
     $('#tabs ul li').removeClass('');
     $(this).parent().addClass('');
 
-    var currentTab = $(this).attr('href');
-    $('#tabs div.tab').hide();
-    $(currentTab).fadeIn(1000);
-    $("#save-username").focus();
+    $("#login").fadeIn(1000);
+    $("#save-trail-name").focus();
 
     return false;
   });
+
+  $('#save-cancel').click(function() {
+    $("#login").fadeOut(1000);
+    return false;
+  });
+
 });
