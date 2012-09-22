@@ -63,7 +63,8 @@ $(document).ready(function() {
       return false;
     }
     $('#new-trail h2').text(delicious.trail_name || 'My New Trail');
-
+    delicious.trail_name = delicious.trail_name.toLowerCase().replace(/ /g, '_');
+    console.log(delicious.trail_name);
     delicious.stepNum = 0;
     delicious.pb_items = Math.min(100, $("#new-trail ul > li").size());
     delicious.pb_step = 100/delicious.pb_items;
@@ -104,7 +105,7 @@ function saveTrail () {
   // of a string, so we are using the global flag in our regular expression
   // to replace everything. The global flag is set with the "g" after
   // the regular expression (/ /g)
-  var newTrailName = 'trail:' + $('#new-trail h2').text().toLowerCase().replace(/ /g, '_');
+  var newTrailName = 'trail:' + delicious.trail_name;
 
   // Get the first bookmark to save, which is the first element of the #new-trail list
   var bookmark = $('#new-trail li:first');
@@ -150,8 +151,10 @@ function saveTrail () {
                   window.delicious_password = null;
                   $('.deleteme').remove();
                   setTimeout(deleter, 200);
-                  window.location = "viewer.html"
-
+                  url = "viewer.html?username=" +
+                    encodeURI(delicious.username) +
+                    "&tag=" + encodeURI(delicious.trail_name.toLowerCase().replace(/ /g, '_'));
+                  window.location = url;
                 }
               }
             });
