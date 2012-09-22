@@ -64,11 +64,13 @@ $(document).ready(function() {
     }
     $('#new-trail h2').text(delicious.trail_name || 'My New Trail');
 
-
     delicious.stepNum = 0;
-    $('<div class="deleteme"></div>').html('<img src="progress_bar.gif" />')
-      .appendTo('#login');
-
+    delicious.pb_items = Math.min(100, $("#new-trail ul > li").size());
+    delicious.pb_step = 100/delicious.pb_items;
+    delicious.pb_value = delicious.pb_step;
+    $("#progressbar").show().progressbar({ disable: false, value: delicious.pb_value });
+    $("#save-cancel").attr("disabled", "disabled");
+    $("#mail-trail").attr("disabled", "disabled");
     saveTrail();
     return false;
   });
@@ -90,6 +92,7 @@ function creating () {
 
 
 function saveTrail () {
+
   // We need to keep track of which bookmark number we are saving, so we
   // can use the `step:2` syntax that we have established
   // When the user submitted the form we started with stepNum = 0,
@@ -139,6 +142,8 @@ function saveTrail () {
                   // Save the next bookmark in the trail in 1000ms (1 second)
                   // We have to wait this period of time to comply with the
                   // terms of the Delicious API. If we don't we may have access denied.
+                  delicious.pb_value += delicious.pb_step;
+                  $("#progressbar").progressbar({value: delicious.pb_value});
                   setTimeout(saveTrail, 1000);
                 } else {
                   // We're done saving the trail
@@ -163,7 +168,7 @@ $(document).ready(function(){
       alert("You must create a trail before saving!");
       return false;
     }
-
+    $("#progressbar").progressbar({ disable: true }).hide();
     $('#tabs ul li').removeClass('');
     $(this).parent().addClass('');
 
