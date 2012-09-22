@@ -40,12 +40,6 @@ $(function() {
 // Create an empty global object where we can store settings for connecting to Delicious
 var delicious = {};
 
-// When users click on a link, open it in a new window
-$('a').live('click', function() {
-  window.open($(this).attr('href'));
-  return false;
-});
-
 $(document).ready(function() {
 
   $('#save-trail').submit(function() {
@@ -76,10 +70,6 @@ $(document).ready(function() {
 
 function deleter () {
   $('#tabs div#login').fadeOut(1000);
-}
-
-function shower () {
-  $('#tabs div#viewer').fadeIn(1000);
 }
 
 function creating () {
@@ -144,7 +134,7 @@ function saveTrail () {
                   window.delicious_password = null;
                   $('.deleteme').remove();
                   setTimeout(deleter, 200);
-                  setTimeout(shower, 2000);
+                  window.location = "viewer.html"
 
                 }
               }
@@ -153,7 +143,7 @@ function saveTrail () {
 
 $(document).ready(function(){
   $('#tabs div.tab').hide();
-  $('#tabs div#welcome').fadeIn(500);
+  $('#tabs div#creator').fadeIn(500);
   $('#tabs ul li:first').addClass('active');
 
   $('.button, .big_butt').click(function(){

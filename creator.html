@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>De.Flick.Us Trailmaker</title>
+
+        <script src="js/jquery-1.8.0.min.js"></script>
+        <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+  	<script src="js/jquery-ui-touch-punch.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script src="js/main.js"></script>
+    </head>
+
+<body>
+
+
+<div id="tabs">
+
+   <div id="creator" class='tab'>
+
+	<h3>De.Flick.Us</h3>
+			 <form id="fetch">
+		         <input autofocus="autofocus" type="text" placeholder="Enter a tag" onclick="this.value = '';" id="term" />
+		         <button id="search">Load Photos</button>
+		     </form>
+
+		    <ul id="poster" class="connectedSortable">
+			</ul>
+		
+		<a href="#login" onClick="" class='big_butt right'>Login to Delicious</a>
+		
+			<div id='new-trail' style='margin-top: 45px;'>
+				<h2 style='font-size: 18px;'>New Trail</h2>
+			<ul class='connectedSortable steps'></ul>
+				<input type='button' class='right' style='margin-top: -7px;' onClick='$("#new-trail ul li").fadeOut();' value='Clear Trail'>
+			</div>
+		
+
+   </div>
+
+   <div id="login" class='tab'>
+		
+		<div class='center'>
+		<center><img src='delicious_logo.png' style='float: none;' /></center>
+		<h1>Login to Del.icio.us</h1>
+		
+		<div style='clear: both; height: 10px;'></div>
+			<form id='save-trail' action='' method='post'>
+				<input id='save-username' placeholder='User Name' type='text' name='save-username'>
+				<input id='save-password' placeholder='Password' type='password' name='save-password'>
+				<input type='submit' name='mail-trail' value='Make New Trail' id='mail-trail'>
+			</form>
+		</div>
+
+
+   </div>
+
+ </div>
+
+
+</body>
+</html>
