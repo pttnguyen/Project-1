@@ -10,19 +10,37 @@ function loadSlideShow(username, tag) {
 
   // This cross-domain request requires that you use '?callback=?' because it is done using JSONP
   $('ul').empty();
+
   $.getJSON('http://feeds.delicious.com/v2/json/' + username + '/'+tag+'?callback=?',
             function(json){
+              if(json.length == 0)
+              {
+                alert("Sorry no matching results found, try another username or tag");
+              }
               $(json).each(function(index) {
                 // this.u // url
                 // this.d // description
                 // this.n // extended notes
                 // this.t // array of tags
-                theHtml+= '<li class="childElem img"><img src="'+this.u+'" height="250" width="auto"></img></li>';
+                var u = this.u
+                var chkimg = u.substr(u.length - 3);
+                if(chkimg == 'jpg')
+                {
+                  theHtml+= '<li class="childElem img"><img src="'+this.u+'" height="250" width="auto"></img></li>';
+                }
+                chkimg="";
+                
               });
-              $("#trails").append(theHtml);
-              $('.coverFlow').coverflow(); //-> Main  ID '#coverFlow'
+              if(theHtml =="")
+              {
+                alert ("Sorry no jpg images found with this tag");
+              }
+              else
+              {
+                $("#trails").append(theHtml);
+                $('.coverFlow').coverflow(); //-> Main  ID '#coverFlow'
               //$('.coverFlow').coverflow({_isAutoScroll:true,_buttons:{"p":".previous","n":".next","pause":".pauseAnimation"}});
-
+              }
             });
 }
 
@@ -46,7 +64,23 @@ var delicious = {};
               $('#load-bookmarks').submit(function() {
                 var username = $('#username').val();
                 var tag = $('#phototag').val();
+                if(username=="" || tag=="")
+                {
+                  alert("You must enter a username and tag");
+
+                }
+              
+
                 loadSlideShow(username, tag);
                 return false;
               });
+
+              $('#mainpage-button').click(function() {
+                window.location.href = 'index.html';
+                return false;
+              });
+
+
+
+
             });
