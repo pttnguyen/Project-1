@@ -31,7 +31,7 @@ function loadSlideShow(username, tag) {
                 chkimg="";
                 
               });
-              if(theHtml =="")
+              if(theHtml =="" && json.length>0)
               {
                 alert ("Sorry no jpg images found with this tag");
               }
