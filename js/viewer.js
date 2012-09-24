@@ -17,6 +17,20 @@ function loadSlideShow(username, tag) {
               {
                 alert("Sorry no matching results found, try another username or tag");
               }
+
+              json.sort(function(a, b) {
+                var re = new RegExp("step:[0-9]*$", "gi");
+                var astep = a.t.filter(function (a) { return re.test(a); });
+                var bstep = b.t.filter(function (a) { return re.test(a); });
+                if (astep.length != 1 || bstep.length != 1) {
+                  console.log("WARNING: malformed trail doesn't contain step!")
+                  return 0;
+                }
+                astep = astep[0].split(":")[1];
+                bstep = bstep[0].split(":")[1];
+                return (astep < bstep) ? -1 : (astep > bstep) ? 1 : 0;
+              });
+
               $(json).each(function(index) {
                 // this.u // url
                 // this.d // description
