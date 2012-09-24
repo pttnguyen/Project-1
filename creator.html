@@ -10,6 +10,7 @@
 
         <link href="css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <script src="js/main.js"></script>
     </head>
 
@@ -33,20 +34,18 @@
 				<h3>New Trail</h3>
 			<ul class='connectedSortable steps'></ul>
 				<input type='button' class='right' onClick='$("#new-trail ul li").fadeOut();' value='Clear Trail'/>
-		        <input type='button' id="login-button" class='button right' value='Save Trail'/>
+				<input type='button' id="login-button" class='button right' value='Create Trail' />
 			</div>
-		
 
    </div>
 
    <div id="login" class='tab'>
-		
-		<center><img src='delicious_logo.png' style='float: none;' /></center>
-		<h3>Login to Del.icio.us to save the trail</h3>
-		<form id='save-trail' action='' method='post'>
+		<img src='delicious_logo.png'/>
+		<h2 style='margin-top: 10px; margin-bottom: 10px;'>Login to Del.icio.us to Save the Trail</h2>
+		<form id='save-trail' action='' method='post' style='padding: 5px; padding-left: none; padding-top: 5px;'>
             <ul>
 			    <li><input id='save-trail-name' placeholder='trail name' type='text' name='save-trail-name'></li>
-			    <li><input id='save-username' placeholder='de.licio.ous username' type='text' name='save-username'></li>
+			    <li><input id='save-username' placeholder='del.icio.us username' type='text' name='save-username'></li>
 			    <li><input id='save-password' placeholder='password' type='password' name='save-password'></li>
 			    <li><input type='submit' name='mail-trail' value='Save Trail' id='mail-trail'>
 			        <input type='button' name='save-cancel' value='Cancel' id='save-cancel'></li>

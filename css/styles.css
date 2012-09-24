@@ -1,7 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
-.coverFlow{overflow:hidden; position:relative; margin:10px auto;}
+.coverFlow{overflow:hidden; position:relative; margin:10px auto; margin-left: 8px; margin-top: 20px; }
 ul{ float:left; margin-top:20px; position:relative;list-style: none;}
+
+.tab { margin-top: 19px; }
 
 .loadingContainer{}
 

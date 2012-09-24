@@ -7,8 +7,8 @@ $(function(){
 	
 	$.widget("ui.coverflow", {
 	options:{
-		containerWidth:960,
-		containerHeight:300,
+		containerWidth:900,
+		containerHeight:280,
 		backgroundColor:'',// Hexa value
 		opacity:1, // Opacity range from 0 to 1 
 		childElem:'.childElem',
