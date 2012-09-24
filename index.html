@@ -4,7 +4,16 @@
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>De.Flick.Us Trailmaker</title>
 
+        <script src="js/jquery-1.8.0.min.js"></script>
+        <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+        <script src="js/jquery-ui-touch-punch.js"></script>
+
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+
+		<script type="text/javascript" src="js/jquery.ui.coverflow.js"></script>
+        <script type="text/javascript" src="js/viewer_home.js"></script>
     </head>
 
 <body>
@@ -19,6 +28,17 @@
     <h1>De.Flick.Us</h1>
 	<h2>A De.<font color='blue'>licio</font>.us <font color='#1057AE'>Flick</font><font color='#FF0084'>r</font> Memex Trail Application</h2>
 
+	<div id="holder" style='margin-left: -20px;'>
+		<div class="coverFlow">
+			<ul id="trails"></ul>
+		</div>
+			  <div class="buttons" style='display: none;'>
+					<span class="previous">Previous</span> 
+					<span class="play">Play</span>
+					<span class="next">Next</span> 
+			  </div> 
+	</div>
+	
 		<div style='clear: both; height: 40px;'></div>
 		<a href="creator.html" class='big_butt'>Make Your Own Trail!</a><a href="viewer.html" class='big_butt'>View Trails</a>
 
