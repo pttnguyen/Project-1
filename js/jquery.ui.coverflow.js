@@ -12,7 +12,7 @@ $(function(){
 		backgroundColor:'',// Hexa value
 		opacity:1, // Opacity range from 0 to 1 
 		childElem:'.childElem',
-		currentElem:4,
+		currentElem:0,
 		recenter:true,
 		autoPlayDuration:3000,
 		action:'click',
