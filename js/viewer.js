@@ -81,6 +81,9 @@ var delicious = {};
                 if(username=="" || tag=="")
                 {
                   alert("You must enter a username and tag");
+					$('.success').hide();
+					$('.nothing').show();
+					$('#username').focus()
                 } else {
 					$('.nothing').hide();
 					$('.success').show();
