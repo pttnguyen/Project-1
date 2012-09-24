@@ -48,8 +48,17 @@ var delicious = {};
 
             $(document).ready(function() {
               // See if any arguments came in on the URL
-              delicious.username = getURLParameter("username");
-              delicious.tag = getURLParameter("tag");
+			  
+			    if ( getURLParameter("username") != null ) {
+						username = getURLParameter("username");
+						tag = getURLParameter("tag");
+					} else {
+						username = "asianslike";
+						tag = "pikachu";
+					}
+			  
+              delicious.username = username;
+              delicious.tag = tag;
               if (!delicious.username || !delicious.username) {
                 // we require both arguments or neither
                 delicious.username = null;
@@ -67,11 +76,10 @@ var delicious = {};
                 if(username=="" || tag=="")
                 {
                   alert("You must enter a username and tag");
-                } else {
-					$('.nothing').hide();
-					$('.success').show();
-				}
-			  
+
+                }
+              
+
                 loadSlideShow(username, tag);
                 return false;
               });
