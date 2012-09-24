@@ -55,7 +55,7 @@ function loadSlideShow(username, tag) {
               else
               {
                 $("#trails").append(theHtml);
-                $('.coverFlow').coverflow(); //-> Main  ID '#coverFlow'
+               $('.coverFlow').coverflow({currentElem:0}); //-> Main  ID '#coverFlow'
               //$('.coverFlow').coverflow({_isAutoScroll:true,_buttons:{"p":".previous","n":".next","pause":".pauseAnimation"}});
               }
             });
