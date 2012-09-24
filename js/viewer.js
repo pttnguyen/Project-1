@@ -15,10 +15,10 @@ function loadSlideShow(username, tag) {
             function(json){
               if(json.length == 0)
               {
-                alert("Sorry no matching results found, try another username or tag");
 				$('.success').hide();
 				$('.nothing').show();
 				$('#phototag').focus()
+                alert("Sorry no matching results found, try another username or tag");
               }
 			  
 			  json.sort(function(a, b) {
