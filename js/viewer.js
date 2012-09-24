@@ -16,6 +16,9 @@ function loadSlideShow(username, tag) {
               if(json.length == 0)
               {
                 alert("Sorry no matching results found, try another username or tag");
+				$('.success').hide();
+				$('.nothing').show();
+				$('#phototag').focus()
               }
 			  
 			  json.sort(function(a, b) {
